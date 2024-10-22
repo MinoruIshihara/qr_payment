@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { QrReader } from "react-qr-reader";
-import BarcodeReader from "react-barcode-reader";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 export const Check = () => {
   const location = useLocation();
-  const { selectedProducts } = location.state || { selectedProducts: [] };
+  const initialSelectedProducts = location.state?.selectedProducts || []; // Optional chaining を使用
+  const [selectedProducts, setSelectedProducts] = useState(
+    initialSelectedProducts
+  ); // useState を使用して定義
   const [userId, setUserId] = useState(null);
+  const isQRCodeScanned = useRef(false);
 
-  const handleScanQrCode = (result, error) => {
-    // ユーザーQRコードデータ(user_id)を処理
-    if (!!result) {
+  const handleScanQrCode = useCallback((result, error) => {
+    if (!!result && !isQRCodeScanned.current) {
+      isQRCodeScanned.current = true;
       setUserId(result.text);
       console.log(result.text);
+      handlePayment();
+      setSelectedProducts([]);
+      console.log(selectedProducts);
     }
-  };
+  });
 
   const handleError = (err) => {
     console.error(err);
