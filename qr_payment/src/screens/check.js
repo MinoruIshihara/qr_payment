@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
 import BarcodeReader from "react-barcode-reader";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export const Check = () => {
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  const location = useLocation();
+  const { selectedProducts } = location.state || { selectedProducts: [] };
   const [userId, setUserId] = useState(null);
 
-  const handleScanBarcode = (data) => {
-    // バーコードデータ(JANコード)を処理
-    setSelectedProducts([...selectedProducts, { merchandise: data }]);
-  };
-
-  const handleScanQrCode = (data) => {
+  const handleScanQrCode = (result, error) => {
     // ユーザーQRコードデータ(user_id)を処理
-    setUserId(data);
+    if (!!result) {
+      setUserId(result.text);
+      console.log(result.text);
+    }
   };
 
   const handleError = (err) => {
@@ -25,14 +25,13 @@ export const Check = () => {
     try {
       await Promise.all(
         selectedProducts.map((product) =>
-          axios.post("http://127.0.0.1:8000/check", {
+          axios.post("http://127.0.0.1:8080/check", {
             user_id: userId,
             merchandise: product.merchandise,
           })
         )
       );
       // 支払い成功時の処理 (例: 商品リストをクリア)
-      setSelectedProducts([]);
     } catch (error) {
       console.error("支払いエラー:", error);
       // エラー処理 (例: エラーメッセージを表示)
@@ -41,27 +40,20 @@ export const Check = () => {
 
   return (
     <div>
-      <h2>ユーザーQRコードスキャン</h2>
-      <QrReader
-        delay={300}
-        onError={handleError}
-        onScan={handleScanQrCode}
-        style={{ width: "100%" }}
-      />
-
-      <h2>選択された商品</h2>
+      <div style={{ width: "50%", margin: "0 auto" }}>
+        <QrReader
+          delay={100}
+          onError={handleError}
+          onResult={handleScanQrCode}
+          style={{ width: "100%" }}
+        />
+      </div>
+      <h2>選択された商品</h2> {/* 商品リストを表示 */}
       <ul>
         {selectedProducts.map((product, index) => (
           <li key={index}>{product.merchandise}</li>
         ))}
       </ul>
-
-      <button
-        onClick={handlePayment}
-        disabled={!userId || selectedProducts.length === 0}
-      >
-        支払う
-      </button>
     </div>
   );
 };
