@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  frontend:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./qr_payment:/app
+    environment:
+      - IDAR_UCHOKSEPOLLING=true # ファイル監視の設定 (Docker for Mac などで必要)
+      - WATCHPACK_POLLING=true
