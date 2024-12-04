@@ -6,8 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 
 import { ScanMerchandise } from "./screens/scan_merchandise.js";
 import { Check } from "./screens/check.js";
+import { Portal } from "./screens/Portal.tsx";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Portal />,
+  },
   {
     path: "/scan-merchandise",
     element: <ScanMerchandise />,

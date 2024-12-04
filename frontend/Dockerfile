@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY ./qr_payment/package*.json ./
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
-COPY . .
+COPY ./qr_payment .
 
 RUN npm run build
 
