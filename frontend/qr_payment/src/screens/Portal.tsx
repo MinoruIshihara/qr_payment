@@ -1,5 +1,18 @@
 import React from "react";
+import { LinkButton } from "./components/LinkButton";
 
 export const Portal = () => {
-  return <></>;
+  return (
+    <>
+      <ol>
+        <li>
+          <LinkButton href="/scan-merchandise">商品購入ページ</LinkButton>
+        </li>
+
+        <li>
+          <LinkButton href="/register-merchandise">商品登録ページ</LinkButton>
+        </li>
+      </ol>
+    </>
+  );
 };

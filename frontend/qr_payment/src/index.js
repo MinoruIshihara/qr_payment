@@ -2,11 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import reportWebVitals from "./reportWebVitals.js";
 
-import { ScanMerchandise } from "./screens/scan_merchandise.js";
-import { Check } from "./screens/check.js";
+import { ScanMerchandise } from "./screens/scan_merchandise.tsx";
+import { RegisterMerchandise } from "./screens/register_merchandise.tsx";
+import { Check } from "./screens/check.tsx";
 import { Portal } from "./screens/Portal.tsx";
+import { Result } from "./screens/result.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +20,16 @@ const router = createBrowserRouter([
     element: <ScanMerchandise />,
   },
   {
+    path: "/register-merchandise",
+    element: <RegisterMerchandise />,
+  },
+  {
     path: "/check",
     element: <Check />,
+  },
+  {
+    path: "/result",
+    element: <Result />,
   },
 ]);
 

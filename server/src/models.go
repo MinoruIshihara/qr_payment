@@ -12,3 +12,10 @@ type Payment struct {
 	Merchandise string    `json:"merchandise"`
 	Datetime    time.Time `json:"datetime"`
 }
+
+type Merchandise struct {
+	gorm.Model
+	JANCode string `json:"jan_code"`
+	Name    string `json:"name"`
+	Price   string `json:"price"`
+}
