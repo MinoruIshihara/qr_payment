@@ -10,7 +10,7 @@ services:
     env_file:
       - server.env
       - db.env
-    command: sh -c "sleep 1 && go build && air && go run qr-payment-server"
+    command: sh -c "sleep 1 && go build && air -c .air.toml"
     ports:
       - 8080:8080
     depends_on:

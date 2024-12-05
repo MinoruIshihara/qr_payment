@@ -23,7 +23,7 @@ func ConnectDB() {
 		log.Fatal("データベースへの接続に失敗しました:", err)
 	}
 
-	db.AutoMigrate(&Payment{}, &Merchandise{})
+	db.AutoMigrate(&Payment{}, &Merchandise{}, &User{})
 
 	DB = db
 }

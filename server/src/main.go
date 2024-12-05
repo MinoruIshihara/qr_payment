@@ -42,10 +42,12 @@ func main() {
 
 	// ルーティングを設定
 	router.POST("/check", CreatePayment)
-	router.GET("/user/payments", GetPayments)
+	router.GET("/payments", GetPayments)
 	router.POST("/register-merchandise", CreateMerchandise)
 	router.GET("/merchandises", GetMerchandise)
 	router.GET("/get-info-from-jan", GetInfoFromJAN)
+	router.POST("/users", CreateUser)
+	router.GET("/users", GetUsers)
 
 	// サーバーを起動
 	router.Run("0.0.0.0:8080")

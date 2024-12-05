@@ -26,8 +26,13 @@ func CreatePayment(c *gin.Context) {
 
 // ユーザーの支払い履歴を取得
 func GetPayments(c *gin.Context) {
+	var user_id = c.Query("user_id")
 	var payments []Payment
-	DB.Find(&payments)
+	if user_id != "" {
+		DB.Where("user_id = ?", user_id).Find(&payments)
+	} else {
+		DB.Find(&payments)
+	}
 
 	c.JSON(http.StatusOK, payments)
 }

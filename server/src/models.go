@@ -19,3 +19,9 @@ type Merchandise struct {
 	Name    string `json:"name"`
 	Price   string `json:"price"`
 }
+
+type User struct {
+	gorm.Model
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
