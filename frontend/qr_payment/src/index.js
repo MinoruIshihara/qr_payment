@@ -10,12 +10,14 @@ import { Check } from "./screens/Check.tsx";
 import { Portal } from "./screens/Portal.tsx";
 import { Result } from "./screens/Result.tsx";
 import { Merchandises } from "./screens/Merchandises.tsx";
+import { Users } from "./screens/Users.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Portal />,
   },
+  { path: "/users", element: <Users /> },
   {
     path: "/scan-merchandise",
     element: <ScanMerchandise />,
