@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 支払い情報を登録
+// 商品を登録
 func CreateMerchandise(c *gin.Context) {
 	var input Merchandise
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -19,10 +19,14 @@ func CreateMerchandise(c *gin.Context) {
 	c.JSON(http.StatusCreated, input)
 }
 
-// ユーザーの支払い履歴を取得
+// 商品の一覧を取得
 func GetMerchandise(c *gin.Context) {
+	janCode := c.Query("jan_code")
 	var merchandise []Merchandise
-	DB.Find(&merchandise)
-
+	if janCode != "" {
+		DB.Where("jan_code = ?", janCode).Find(&merchandise)
+	} else {
+		DB.Find(&merchandise)
+	}
 	c.JSON(http.StatusOK, merchandise)
 }

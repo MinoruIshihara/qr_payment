@@ -4,11 +4,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals.js";
 
-import { ScanMerchandise } from "./screens/scan_merchandise.tsx";
-import { RegisterMerchandise } from "./screens/register_merchandise.tsx";
-import { Check } from "./screens/check.tsx";
+import { ScanMerchandise } from "./screens/ScanMerchandise.tsx";
+import { RegisterMerchandise } from "./screens/RegisterMerchandise.tsx";
+import { Check } from "./screens/Check.tsx";
 import { Portal } from "./screens/Portal.tsx";
-import { Result } from "./screens/result.tsx";
+import { Result } from "./screens/Result.tsx";
+import { Merchandises } from "./screens/Merchandises.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/register-merchandise",
     element: <RegisterMerchandise />,
+  },
+  {
+    path: "/merchandises",
+    element: <Merchandises />,
   },
   {
     path: "/check",

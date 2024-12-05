@@ -1,9 +1,10 @@
 import React, { useState, useRef, useCallback } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-import { Merchandise } from "./register_merchandise";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Merchandise } from "./RegisterMerchandise";
 
 export const Result = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const initialSelectedProducts = location.state
     ?.selectedProducts as Merchandise[]; // Optional chaining を使用
@@ -18,6 +19,7 @@ export const Result = () => {
           axios.post("http://127.0.0.1:8080/register-merchandise", product)
         )
       );
+      navigate("/");
     } catch (error) {
       console.error("登録エラー:", error);
     }

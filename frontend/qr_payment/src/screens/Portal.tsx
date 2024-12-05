@@ -12,6 +12,9 @@ export const Portal = () => {
         <li>
           <LinkButton href="/register-merchandise">商品登録ページ</LinkButton>
         </li>
+        <li>
+          <LinkButton href="/merchandises">商品一覧ページ</LinkButton>
+        </li>
       </ol>
     </>
   );
