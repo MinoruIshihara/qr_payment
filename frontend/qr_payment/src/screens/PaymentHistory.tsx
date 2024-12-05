@@ -20,7 +20,7 @@ export const PaymentHistory = () => {
 
     // 5秒後にトップページに遷移
     const timer = setTimeout(() => {
-      navigate("/");
+      navigate("/scan-merchandise");
     }, 10000);
     return () => clearTimeout(timer);
   }, []);
@@ -36,6 +36,13 @@ export const PaymentHistory = () => {
           </li>
         ))}
       </ul>
+      <h2>合計金額</h2>
+      <p>
+        {payments.reduce(
+          (sum, payment) => sum + parseInt(payment.merchandise.price),
+          0
+        )}
+      </p>
     </div>
   );
 };
