@@ -7,21 +7,37 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type CheckInfo struct {
+	UserID  string `json:"user_id"`
+	JANCode string `json:"jan_code"`
+}
+
 // 支払い情報を登録
 func CreatePayment(c *gin.Context) {
-	var input Payment
+	var input CheckInfo
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// 支払い日時を設定
-	input.Datetime = time.Now()
+	var merchandise Merchandise
+	DB.Where("jan_code = ?", input.JANCode).Order("updated_at asc").First(&merchandise)
+
+	var payment Payment
+	payment.MerchandiseID = merchandise.ID
+	payment.UserID = input.UserID
+	payment.Datetime = time.Now()
 
 	// データベースに保存
-	DB.Create(&input)
+	DB.Create(&payment)
 
-	c.JSON(http.StatusCreated, input)
+	c.JSON(http.StatusCreated, payment)
+}
+
+type GetPaymentRes struct {
+	User        User        `json:"user"`
+	Merchandise Merchandise `json:"merchandise"`
+	Datetime    time.Time   `json:"datetime"`
 }
 
 // ユーザーの支払い履歴を取得
@@ -33,6 +49,14 @@ func GetPayments(c *gin.Context) {
 	} else {
 		DB.Find(&payments)
 	}
+	var response []GetPaymentRes
+	for _, v := range payments {
+		var user User
+		DB.Where("id = ?", v.UserID).First(&user)
+		var merchandise Merchandise
+		DB.Where("id = ?", v.MerchandiseID).First(&merchandise)
+		response = append(response, GetPaymentRes{User: user, Merchandise: merchandise, Datetime: v.Datetime})
+	}
 
-	c.JSON(http.StatusOK, payments)
+	c.JSON(http.StatusOK, response)
 }

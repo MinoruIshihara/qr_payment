@@ -3,14 +3,15 @@ package main
 import (
 	"time"
 
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 type Payment struct {
 	gorm.Model
-	UserID      string    `json:"user_id"`
-	Merchandise string    `json:"merchandise"`
-	Datetime    time.Time `json:"datetime"`
+	UserID        string    `json:"user_id" gorm:"foreignKey:UserID"`
+	MerchandiseID uint      `json:"merchandise_id" gorm:"foreignKey:MerchandiseID"`
+	Datetime      time.Time `json:"datetime"`
 }
 
 type Merchandise struct {
@@ -20,8 +21,14 @@ type Merchandise struct {
 	Price   string `json:"price"`
 }
 
+func generate_id() string {
+	return uuid.NewString()
+}
+
 type User struct {
-	gorm.Model
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID        string `gorm:"primaryKey;type:varchar(255);default:generate_id()"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt gorm.DeletedAt `gorm:"index"`
+	Name      string
 }
