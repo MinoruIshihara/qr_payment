@@ -22,7 +22,7 @@ export const Check = () => {
         )
       );
       // 支払い成功時の処理 (例: 商品リストをクリア)
-      navigate("/");
+      navigate("/payments", { state: { user_id: cartInfo.user_id } });
     } catch (error) {
       console.error("支払いエラー:", error);
       // エラー処理 (例: エラーメッセージを表示)

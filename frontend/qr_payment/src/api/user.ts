@@ -9,9 +9,13 @@ export type User = {
   name: string;
 };
 
-export const getUsers = async (): Promise<User[] | undefined> => {
+export const getUsers = async (
+  userId?: string
+): Promise<User[] | undefined> => {
   try {
-    const response = await axios.get<User[]>("http://127.0.0.1:8080/users");
+    const response = await axios.get<User[]>("http://127.0.0.1:8080/users", {
+      params: { user_id: userId },
+    });
     return response.data;
   } catch (error) {
     console.error("ユーザー情報取得エラー:", error);

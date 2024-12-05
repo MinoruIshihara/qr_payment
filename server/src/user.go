@@ -27,6 +27,11 @@ func CreateUser(c *gin.Context) {
 
 func GetUsers(c *gin.Context) {
 	var users []User
-	DB.Find(&users)
+	user_id := c.Query("user_id")
+	if user_id != "" {
+		DB.Where("id = ?", user_id).Find(&users)
+	} else {
+		DB.Find(&users)
+	}
 	c.JSON(http.StatusOK, users)
 }

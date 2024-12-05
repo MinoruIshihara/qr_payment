@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getInfoFromJANAPI } from "api/jancode";
 import { getMerchandises } from "api/merchandise";
 import { GetMerchandiseRes } from "api/merchandise";
+import { getUsers, User } from "api/user";
 
 export const ScanMerchandise = () => {
   const initialMerchandise: GetMerchandiseRes = [];
@@ -14,15 +15,23 @@ export const ScanMerchandise = () => {
 
   const handleScanBarcode = (data: string) => {
     if (data.startsWith("USER")) {
-      navigate("/check", {
-        state: {
-          selectedProducts: selectedProducts.map((product) => ({
-            jan_code: product.jan_code,
-            name: product.name,
-            price: product.price,
-          })),
-          user_id: data.substring(4),
-        },
+      const user_id = data.substring(4).toLowerCase();
+      const userRes = getUsers(user_id);
+      userRes.then((res) => {
+        if (res && res.length > 0) {
+          navigate("/check", {
+            state: {
+              selectedProducts: selectedProducts.map((product) => ({
+                jan_code: product.jan_code,
+                name: product.name,
+                price: product.price,
+              })),
+              user_id: data.substring(4),
+            },
+          });
+        } else {
+          console.log("登録されていないユーザーです");
+        }
       });
     }
     const response = getMerchandises(data);

@@ -22,7 +22,7 @@ export const getMerchandises = async (
     );
     return response.data;
   } catch (error) {
-    console.error("支払い履歴取得エラー:", error);
+    console.error("商品一覧取得エラー:", error);
     return;
   }
 };

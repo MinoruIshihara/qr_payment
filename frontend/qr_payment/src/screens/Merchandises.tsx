@@ -19,7 +19,7 @@ export const Merchandises = () => {
   );
 
   useEffect(() => {
-    const fetchPayments = async () => {
+    const fetchMerchandises = async () => {
       try {
         const response = await axios.get<GetMerchandiseRes>(
           "http://127.0.0.1:8080/merchandises"
@@ -29,7 +29,7 @@ export const Merchandises = () => {
         console.error("支払い履歴取得エラー:", error);
       }
     };
-    fetchPayments();
+    fetchMerchandises();
   }, []);
 
   return (
