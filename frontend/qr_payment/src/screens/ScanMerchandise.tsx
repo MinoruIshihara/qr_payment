@@ -18,7 +18,8 @@ export const ScanMerchandise = () => {
       const user_id = data.substring(4).toLowerCase();
       const userRes = getUsers(user_id);
       userRes.then((res) => {
-        if (res && res.length > 0) {
+        if (res && res.length === 1) {
+          console.log(res[0]);
           navigate("/check", {
             state: {
               selectedProducts: selectedProducts.map((product) => ({
@@ -26,7 +27,7 @@ export const ScanMerchandise = () => {
                 name: product.name,
                 price: product.price,
               })),
-              user_id: data.substring(4),
+              user: res[0],
             },
           });
         } else {

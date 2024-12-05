@@ -32,7 +32,7 @@ export const Users = () => {
       <ul>
         {users.map((user, index) => (
           <li key={index}>
-            {user.name} : {user.id}
+            {user.Name} : {user.ID}
           </li>
         ))}
       </ul>

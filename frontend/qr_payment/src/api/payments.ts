@@ -1,12 +1,11 @@
 import axios from "axios";
+import { User } from "./user";
+import { Merchandise } from "screens/RegisterMerchandise";
 
 export type Payment = {
-  CreatedAt: string;
-  DeletedAt: string;
-  ID: number;
-  UpdatedAt: string;
-  merchandise: string;
-  user_id: string;
+  user: User;
+  merchandise: Merchandise;
+  datetime: string;
 };
 
 export const getPayments = async (

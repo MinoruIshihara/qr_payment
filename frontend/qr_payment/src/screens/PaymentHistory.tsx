@@ -31,7 +31,8 @@ export const PaymentHistory = () => {
       <ul>
         {payments.map((payment, index) => (
           <li key={index}>
-            {payment.UpdatedAt}: JAN{payment.merchandise}
+            {payment.datetime}: {payment.merchandise.name} ¥
+            {payment.merchandise.price}
           </li>
         ))}
       </ul>

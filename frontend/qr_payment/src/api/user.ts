@@ -4,9 +4,8 @@ export type User = {
   CreatedAt: string;
   DeletedAt: string;
   ID: number;
-  id: string;
   UpdatedAt: string;
-  name: string;
+  Name: string;
 };
 
 export const getUsers = async (
