@@ -7,11 +7,11 @@ export const Portal = () => {
       <h2>トップ</h2>
       <ol>
         <li>
-          <LinkButton href="/scan-merchandise">商品購入</LinkButton>
+          <LinkButton href="/scan-merchandise">購入</LinkButton>
         </li>
 
         <li>
-          <LinkButton href="/register-merchandise">商品登録</LinkButton>
+          <LinkButton href="/register-merchandise">登録</LinkButton>
         </li>
         <li>
           <LinkButton href="/merchandises">商品一覧</LinkButton>
