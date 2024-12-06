@@ -41,28 +41,12 @@ export const RegisterMerchandise = () => {
       return updatedProducts;
     });
   };
-
-  useEffect(() => {
-    // 必要に応じて、ユーザーの支払い履歴を取得
-    const fetchPayments = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8080/user/payments");
-        // 支払い履歴を表示
-        console.log(response.data);
-      } catch (error) {
-        console.error("支払い履歴取得エラー:", error);
-      }
-    };
-  });
-
   return (
     <div>
-      <h1>QRコード会計システム</h1>
-
       <h2>商品登録</h2>
       <BarcodeReader onError={handleError} onScan={handleScanBarcode} />
 
-      <h2>選択された商品</h2>
+      <h4>選択された商品:</h4>
       <ul>
         {selectedProducts.map((product, index) => (
           <li key={index}>

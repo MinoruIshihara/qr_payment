@@ -49,12 +49,10 @@ export const ScanMerchandise = () => {
 
   return (
     <div>
-      <h1>QRコード会計システム</h1>
-
       <h2>商品スキャン</h2>
       <BarcodeReader onError={handleError} onScan={handleScanBarcode} />
 
-      <h2>選択された商品</h2>
+      <h4>選択された商品:</h4>
       <ul>
         {selectedProducts.map((product, index) => (
           <li key={index}>
