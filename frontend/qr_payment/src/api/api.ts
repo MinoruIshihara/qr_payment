@@ -1,5 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { GetMerchandiseRes, Payment, ProductInfo, User } from "./types";
+import {
+  GetMerchandiseRes,
+  Payment,
+  PaymentForm,
+  ProductInfo,
+  User,
+} from "./types";
 
 const apiAxios = axios.create({
   baseURL: `${process.env.REACT_APP_BACKEND_URL}/`,
@@ -33,32 +39,36 @@ const postAPI = async <T>(
 };
 
 export const getInfoFromJANAPI = async (code: string): Promise<ProductInfo> => {
-  return getAPI<ProductInfo>(`get-info-from-jan?code=${code}`);
+  return getAPI<ProductInfo>("get-info-from-jan", {
+    params: { code: code },
+  });
 };
 
 export const getMerchandises = async (
   code?: string
 ): Promise<GetMerchandiseRes> => {
-  return getAPI<GetMerchandiseRes>(`merchandises`, { params: { code: code } });
+  return getAPI<GetMerchandiseRes>("merchandises", {
+    params: { jan_code: code },
+  });
 };
 
-export const getPayments = async (
-  user_id?: string
-): Promise<Payment[] | undefined> => {
+export const getPayments = async (user_id?: string): Promise<Payment[]> => {
   return getAPI<Payment[]>("payments", {
     params: { user_id: user_id },
   });
 };
 
-export const getUsers = async (
-  userId?: string
-): Promise<User[] | undefined> => {
+export const postPayments = async (payment: PaymentForm): Promise<Payment> => {
+  return postAPI<Payment>("check", payment);
+};
+
+export const getUsers = async (userId?: string): Promise<User[]> => {
   return getAPI<User[]>("users", {
     params: { user_id: userId },
   });
 };
 
-export const postUser = async (name: string): Promise<User[] | undefined> => {
+export const postUser = async (name: string): Promise<User[]> => {
   return postAPI<User[]>("/users", {
     name: name,
   });

@@ -33,10 +33,16 @@ export type Payment = {
   datetime: string;
 };
 
+export type PaymentForm = {
+  user_id: string;
+  jan_code: string;
+  datetime: Date;
+};
+
 export type User = {
   CreatedAt: string;
   DeletedAt: string;
-  ID: number;
+  ID: string;
   UpdatedAt: string;
   Name: string;
 };
