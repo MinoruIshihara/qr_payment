@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "react-barcode": "^1.5.3",
     "react-barcode-reader": "^0.0.2"
   }
 }

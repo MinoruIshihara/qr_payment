@@ -1,6 +1,7 @@
 import { getUsers, postUser } from "api/api";
 import { User } from "api/types";
 import { useEffect, useState } from "react";
+import Barcode from "react-barcode";
 
 export const Users = () => {
   const [users, setUsers] = useState([] as User[]);
@@ -33,7 +34,13 @@ export const Users = () => {
       <ul>
         {users.map((user, index) => (
           <li key={index}>
-            {user.Name} : {user.ID}
+            {user.Name} : {user.ID} <br />
+            <Barcode
+              format={"CODE39"}
+              width={0.75}
+              height={40}
+              value={`USER${user.ID}`}
+            />
           </li>
         ))}
       </ul>
