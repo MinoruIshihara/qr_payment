@@ -4,6 +4,7 @@ import { LinkButton } from "./components/LinkButton";
 export const Portal = () => {
   return (
     <>
+      <h2>トップ</h2>
       <ol>
         <li>
           <LinkButton href="/scan-merchandise">商品購入ページ</LinkButton>
@@ -16,6 +17,7 @@ export const Portal = () => {
           <LinkButton href="/merchandises">商品一覧ページ</LinkButton>
         </li>
       </ol>
+      <p>サーバーURL: {process.env.REACT_APP_BACKEND_URL}</p>
     </>
   );
 };

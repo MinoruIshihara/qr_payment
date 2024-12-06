@@ -1,12 +1,21 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { GetMerchandiseRes, Payment, ProductInfo, User } from "./types";
 
+const apiAxios = axios.create({
+  baseURL: `${process.env.REACT_APP_BACKEND_URL}/`,
+});
+
 const getAPI = async <T>(
   path: string,
   config?: AxiosRequestConfig<any>
 ): Promise<T> => {
-  const response = await axios.get<T>(`http://127.0.0.1:8080/${path}`, config);
-  return response.data;
+  try {
+    const response = await apiAxios.get<T>(`${path}`, config);
+    return response.data;
+  } catch {
+    console.log("サーバーエラー");
+    throw new Error("Backend Error");
+  }
 };
 
 const postAPI = async <T>(
@@ -14,12 +23,13 @@ const postAPI = async <T>(
   data?: any,
   config?: AxiosRequestConfig<any>
 ): Promise<T> => {
-  const response = await axios.post<T>(
-    `http://127.0.0.1:8080/${path}`,
-    data,
-    config
-  );
-  return response.data;
+  try {
+    const response = await apiAxios.post<T>(`${path}`, data, config);
+    return response.data;
+  } catch {
+    console.log("サーバーエラー");
+    throw new Error("Backend Error");
+  }
 };
 
 export const getInfoFromJANAPI = async (code: string): Promise<ProductInfo> => {
