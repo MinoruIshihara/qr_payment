@@ -9,8 +9,10 @@
 /coverage
 
 # production
-qr_payment/build
+frontend/qr_payment/build
+frontend/qr_payment/build/**
 server/src/qr-payment-server
+server/src/tmp
 
 # misc
 .DS_Store
