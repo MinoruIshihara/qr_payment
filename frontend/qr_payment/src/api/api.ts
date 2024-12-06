@@ -37,9 +37,9 @@ export const getInfoFromJANAPI = async (code: string): Promise<ProductInfo> => {
 };
 
 export const getMerchandises = async (
-  code: string
+  code?: string
 ): Promise<GetMerchandiseRes> => {
-  return getAPI<GetMerchandiseRes>(`merchandises?code=${code}`);
+  return getAPI<GetMerchandiseRes>(`merchandises`, { params: { code: code } });
 };
 
 export const getPayments = async (
