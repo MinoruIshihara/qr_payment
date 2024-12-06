@@ -12,6 +12,7 @@ import { Result } from "./screens/Result.tsx";
 import { Merchandises } from "./screens/Merchandises.tsx";
 import { Users } from "./screens/Users.tsx";
 import { PaymentHistory } from "./screens/PaymentHistory.tsx";
+import { Accounting } from "./screens/Accounting.tsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/payments",
     element: <PaymentHistory />,
+  },
+  {
+    path: "/accounting",
+    element: <Accounting />,
   },
 ]);
 
