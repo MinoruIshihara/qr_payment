@@ -5,7 +5,7 @@ import { CSVLink, CSVDownload } from "react-csv";
 
 export const Accounting = () => {
   const [payments, setPayments] = useState([] as Payment[]);
-  const anchorRef = useRef<HTMLAnchorElement>(null);
+  const anchorRef = useRef();
 
   useEffect(() => {
     const paymentsRes = getPayments();
@@ -34,6 +34,13 @@ export const Accounting = () => {
           0
         )}
       </p>
+      <button
+        onClick={() => {
+          anchorRef.current!.link.click();
+        }}
+      >
+        CSVダウンロード
+      </button>
       <CSVLink
         data={payments.map((p) => {
           return {
@@ -54,6 +61,7 @@ export const Accounting = () => {
           { label: "購入日時", key: "datetime" },
         ]}
         filename={"account.csv"}
+        ref={anchorRef}
       />
     </div>
   );

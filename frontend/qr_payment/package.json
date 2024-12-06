@@ -45,7 +45,9 @@
     ]
   },
   "devDependencies": {
+    "@types/react-csv": "^1.1.10",
     "react-barcode": "^1.5.3",
-    "react-barcode-reader": "^0.0.2"
+    "react-barcode-reader": "^0.0.2",
+    "react-csv": "^2.2.2"
   }
 }
