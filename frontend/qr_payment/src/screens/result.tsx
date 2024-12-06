@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Merchandise } from "./RegisterMerchandise";
+import { Merchandise } from "api/types";
 
 export const Result = () => {
   const navigate = useNavigate();

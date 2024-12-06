@@ -2,13 +2,8 @@ import React, { useState, useEffect } from "react";
 import BarcodeReader from "react-barcode-reader";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { getInfoFromJANAPI } from "api/jancode";
-
-export type Merchandise = {
-  jan_code: string;
-  name: string;
-  price: string;
-};
+import { getInfoFromJANAPI } from "api/api";
+import { Merchandise } from "api/types";
 
 export const RegisterMerchandise = () => {
   const initialMerchandise: Merchandise[] = [];

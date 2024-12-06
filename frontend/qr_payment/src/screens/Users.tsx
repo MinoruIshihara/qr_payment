@@ -1,4 +1,5 @@
-import { getUsers, postUser, User } from "api/user";
+import { getUsers, postUser } from "api/api";
+import { User } from "api/types";
 import { useEffect, useState } from "react";
 
 export const Users = () => {

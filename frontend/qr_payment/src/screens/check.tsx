@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Merchandise } from "./RegisterMerchandise";
-import { User } from "api/user";
+import { Merchandise, User } from "api/types";
 
 export const Check = () => {
   const navigate = useNavigate();

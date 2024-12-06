@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { getMerchandises, getUsers } from "api/api";
+import { GetMerchandiseRes } from "api/types";
+import React, { useState } from "react";
 import BarcodeReader from "react-barcode-reader";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { getInfoFromJANAPI } from "api/jancode";
-import { getMerchandises } from "api/merchandise";
-import { GetMerchandiseRes } from "api/merchandise";
-import { getUsers, User } from "api/user";
 
 export const ScanMerchandise = () => {
   const initialMerchandise: GetMerchandiseRes = [];

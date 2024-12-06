@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getPayments, Payment } from "api/payments";
+import { getPayments } from "api/api";
+import { Payment } from "api/types";
 
 export const PaymentHistory = () => {
   const [payments, setPayments] = useState([] as Payment[]);

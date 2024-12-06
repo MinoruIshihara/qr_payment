@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { getInfoFromJANAPI } from "api/jancode";
-
-export type GetMerchandiseRes = {
-  CreatedAt: string;
-  DeletedAt: string;
-  ID: number;
-  UpdatedAt: string;
-  jan_code: string;
-  name: string;
-  price: string;
-}[];
+import { GetMerchandiseRes } from "api/types";
 
 export const Merchandises = () => {
   const [selectedProducts, setSelectedProducts] = useState(
