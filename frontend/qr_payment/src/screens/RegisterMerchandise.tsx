@@ -34,6 +34,10 @@ export const RegisterMerchandise = () => {
     navigate("/result", { state: { selectedProducts: selectedProducts } });
   };
 
+  const handleClearMerchandise = () => {
+    setSelectedProducts([]);
+  };
+
   const handleChangePrise = (index: number, value: string) => {
     setSelectedProducts((prevProducts) => {
       const updatedProducts = [...prevProducts];
@@ -63,6 +67,7 @@ export const RegisterMerchandise = () => {
         ))}
       </ul>
       <button onClick={handleRegister}>確認画面へ</button>
+      <button onClick={handleClearMerchandise}>商品クリア</button>
     </div>
   );
 };

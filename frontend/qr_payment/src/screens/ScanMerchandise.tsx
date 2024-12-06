@@ -43,6 +43,10 @@ export const ScanMerchandise = () => {
     });
   };
 
+  const handleClearMerchandise = () => {
+    setSelectedProducts([]);
+  };
+
   const handleError = (err: any) => {
     console.error(err);
   };
@@ -60,6 +64,7 @@ export const ScanMerchandise = () => {
           </li>
         ))}
       </ul>
+      <button onClick={handleClearMerchandise}>商品クリア</button>
     </div>
   );
 };
