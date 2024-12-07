@@ -16,7 +16,6 @@ export const ScanMerchandise = () => {
       const userRes = getUsers(user_id);
       userRes.then((res) => {
         if (res && res.length === 1) {
-          console.log(res[0]);
           navigate("/check", {
             state: {
               selectedProducts: selectedProducts.map((product) => ({
@@ -49,6 +48,13 @@ export const ScanMerchandise = () => {
 
   const handleError = (err: any) => {
     console.error(err);
+  };
+
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = e.code;
+    if (key === "Escape") {
+      handleClearMerchandise();
+    }
   };
 
   return (

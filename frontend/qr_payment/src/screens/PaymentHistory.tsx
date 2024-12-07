@@ -8,7 +8,6 @@ export const PaymentHistory = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const user_id = location.state.user_id;
-  console.log(user_id);
 
   useEffect(() => {
     const paymentsRes = getPayments(user_id);
