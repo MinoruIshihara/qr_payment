@@ -1,0 +1,9 @@
+services:
+  nginx:
+    container_name: "nginx"
+    build:
+      context: .
+    ports:
+      - 3080:80
+    volumes:
+      - ./src:/usr/share/nginx/html
