@@ -7,3 +7,4 @@ services:
       - 3080:80
     volumes:
       - ./src:/usr/share/nginx/html
+      - ./conf:/etc/nginx/conf.d
