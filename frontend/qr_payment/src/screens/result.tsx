@@ -1,7 +1,7 @@
-import React, { useState, useRef, useCallback } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Merchandise } from "api/types";
+import { postMerchandise } from "api/api";
 
 export const Result = () => {
   const navigate = useNavigate();
@@ -13,16 +13,10 @@ export const Result = () => {
   ); // useState を使用して定義
 
   const handleRegister = async () => {
-    try {
-      await Promise.all(
-        selectedProducts.map((product) =>
-          axios.post("http://127.0.0.1:8080/register-merchandise", product)
-        )
-      );
-      navigate("/");
-    } catch (error) {
-      console.error("登録エラー:", error);
-    }
+    await Promise.all(
+      selectedProducts.map((product) => postMerchandise(product))
+    );
+    navigate("/");
   };
 
   return (

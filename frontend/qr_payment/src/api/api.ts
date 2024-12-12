@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import {
   GetMerchandiseRes,
+  Merchandise,
   Payment,
   PaymentForm,
   ProductInfo,
@@ -72,4 +73,10 @@ export const postUser = async (name: string): Promise<User[]> => {
   return postAPI<User[]>("/users", {
     name: name,
   });
+};
+
+export const postMerchandise = async (
+  product: Merchandise
+): Promise<Merchandise> => {
+  return postAPI<Merchandise>("register-merchandise", product);
 };
